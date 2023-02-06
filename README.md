@@ -1,5 +1,9 @@
 # Stability Rest Client
 
+![Version](https://img.shields.io/npm/v/stability-rest)
+![Size](https://img.shields.io/bundlephobia/min/stability-rest)
+![State](https://img.shields.io/badge/State-Beta-orange)
+
 This is a rest client to interface with Stability.ai's API.
 As this requires an API key, server-side usage is recommended.
 
