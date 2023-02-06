@@ -1,4 +1,4 @@
-import StabilityClient from "./StabilityClient";
+import { StabilityClient } from "./StabilityClient";
 import FormData = require("form-data");
 
 export enum ClipGuidancePreset {
@@ -32,6 +32,7 @@ export interface GenerationOptions {
   samples: number;
   steps: number;
   sampler?: GenerationSampler;
+  seed?: number;
 }
 
 export enum FinishReason {
@@ -59,7 +60,7 @@ export enum MaskSource {
 /**
  * Interface to access the /generation resource.
  */
-export default class GenerationResource {
+export class GenerationResource {
   /**
    * Initialize a new instance of GenerationResource. You probably want to use the StabilityClient instead.
    * @param client
@@ -77,6 +78,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public textToImage(
     engineId: string,
@@ -89,6 +91,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 20,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     return this.client.http.post<GenerationResponse>(
@@ -121,6 +124,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public textToImagePng(
     engineId: string,
@@ -133,6 +137,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 20,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     return this.client.http.post<Buffer>(
@@ -173,6 +178,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public imageToImage(
     engineId: string,
@@ -187,6 +193,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 10,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     const formData = new FormData();
@@ -224,6 +231,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public imageToImagePng(
     engineId: string,
@@ -238,6 +246,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 10,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     const formData = new FormData();
@@ -280,6 +289,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public imageToImageMasking(
     engineId: string,
@@ -295,6 +305,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 10,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     const formData = new FormData();
@@ -334,6 +345,7 @@ export default class GenerationResource {
    * @param samples - the number of samples to generate, default is 1
    * @param steps - the number of steps to generate, default is 20. The higher the step, the longer it will take to generate the image.
    * @param sampler - the sampler to use, default is null. See GenerationSampler for a list of available samplers.
+   * @param seed - the seed to use, default is 0. The seed is used to generate the image. If you want to generate the same image, you need to use the same seed.
    */
   public imageToImageMaskingPng(
     engineId: string,
@@ -349,6 +361,7 @@ export default class GenerationResource {
       samples = 1,
       steps = 10,
       sampler = null,
+      seed = 0,
     }: Partial<GenerationOptions> = {}
   ) {
     const formData = new FormData();

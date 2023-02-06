@@ -1,4 +1,4 @@
-import StabilityClient from "./StabilityClient";
+import { StabilityClient } from "./StabilityClient";
 import * as fs from "fs";
 import * as path from "path";
 import {

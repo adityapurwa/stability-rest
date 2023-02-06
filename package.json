@@ -1,6 +1,6 @@
 {
   "name": "stability-rest",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta.2",
   "description": "Client for Stability.ai REST API",
   "main": "dist/index.js",
   "scripts": {

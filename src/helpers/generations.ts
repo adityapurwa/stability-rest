@@ -1,9 +1,9 @@
-import {GenerationArtifact} from "../api/GenerationResource";
+import { GenerationArtifact } from "../api";
 
 /**
  * Convert artifact base64 data into a Buffer object
  * @param artifact
  */
 export function getArtifactBuffer(artifact: GenerationArtifact) {
-    return Buffer.from(artifact.base64, 'base64');
+  return Buffer.from(artifact.base64, "base64");
 }

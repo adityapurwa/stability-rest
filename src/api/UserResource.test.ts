@@ -1,4 +1,4 @@
-import StabilityClient from "./StabilityClient";
+import { StabilityClient } from "./StabilityClient";
 
 describe("UserResource", function () {
   const client = new StabilityClient(process.env.STABILITY_API_KEY);

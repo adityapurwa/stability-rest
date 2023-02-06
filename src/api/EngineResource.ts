@@ -1,4 +1,4 @@
-import StabilityClient from "./StabilityClient";
+import { StabilityClient } from "./StabilityClient";
 
 export type ListResponse = {
   id: string;
@@ -10,7 +10,7 @@ export type ListResponse = {
 /**
  * Interface to access the /engines resources
  */
-export default class EngineResource {
+export class EngineResource {
   /**
    * Initialize a new instance of EngineResource. You probably want to use the StabilityClient instead.
    * @param client

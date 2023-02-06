@@ -8,13 +8,75 @@ As this requires an API key, server-side usage is recommended.
 ## Installation
 
 ```
-$ npm install @adityapurwa/stability-rest
+$ npm install stability-rest
 ```
 
 ## Usage
 
-```js
+### Typescript
+
+```ts
+import {
+  ClipGuidancePreset,
+  GenerationSampler,
+  StabilityClient,
+  WellKnownEngine,
+} from "stability-rest";
+import * as fs from "fs";
+
 const client = new StabilityClient(process.env.STABILITY_API_KEY);
+
+client.generation
+  .textToImagePng(
+    WellKnownEngine["stable-diffusion-512-v2-1"],
+    "a pale blue planet in the depth of the space",
+    {
+      width: 512,
+      height: 512,
+      cfg_scale: 7.0,
+      sampler: GenerationSampler.K_EULER_ANCESTRAL,
+      clip_guidance_preset: ClipGuidancePreset.FAST_BLUE,
+      steps: 20,
+      samples: 1,
+      seed: 10,
+    }
+  )
+  .then((response) => {
+    fs.writeFileSync("out.png", response.data);
+  });
+```
+
+### Javascript
+
+```js
+const {
+  StabilityClient,
+  WellKnownEngine,
+  GenerationSampler,
+  ClipGuidancePreset,
+} = require("stability-rest");
+const fs = require("fs");
+
+const client = new StabilityClient(process.env.STABILITY_API_KEY);
+
+client.generation
+  .textToImagePng(
+    WellKnownEngine["stable-diffusion-512-v2-1"],
+    "a pale blue planet in the depth of the space",
+    {
+      width: 512,
+      height: 512,
+      seed: 123,
+      cfg_scale: 7.0,
+      sampler: GenerationSampler.K_EULER_ANCESTRAL,
+      clip_guidance_preset: ClipGuidancePreset.FAST_BLUE,
+      steps: 20,
+      samples: 1,
+    }
+  )
+  .then((response) => {
+    fs.writeFileSync("out.png", response.data);
+  });
 ```
 
 ## API
@@ -71,11 +133,12 @@ List of things that need to be done:
 2. Install dependencies 3. Create a `.env` file with your API key. Set the key as `STABILITY_API_KEY`.
 3. Make contributions
 4. Run tests <sup>[1]</sup>
+
 ```sh
 $ npm run test
 ```
 
-Then create a PR once all of the tests passes.
+Then create a PR once all the tests pass.
 
 ### Important Notes on Tests <sup>1</sup>
 
